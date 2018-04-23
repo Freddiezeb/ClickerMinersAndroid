@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
+    <Button
+        android:id="@+id/btnConnect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/connect_to_shealth" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

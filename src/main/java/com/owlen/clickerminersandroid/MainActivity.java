@@ -7,6 +7,7 @@ import com.samsung.android.sdk.healthdata.HealthDataStore;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager.PermissionKey;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager.PermissionType;
+import com.unity3d.player.UnityPlayer;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,7 +26,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class MainActivity extends UnityPlayerActivity {
 
     public static final String APP_TAG = "SimpleHealth";
 
@@ -33,7 +34,8 @@ public class MainActivity extends Activity {
 
     private HealthDataStore mStore;
     private StepCountReporter mReporter;
-    Button btnStart;
+    Button btnStart, btnConnect;
+    private String strSteps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +56,29 @@ public class MainActivity extends Activity {
         // Request the connection to the health data store
         mStore.connectService();
 
+        btnConnect = (Button)findViewById(R.id.btnConnect);
+        btnConnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requestPermission();
+            }
+        });
 
         btnStart = (Button)findViewById(R.id.btnStart);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sendUnityMessage("ClickMechanic", "getSteps", strSteps);
                 Intent intent = new Intent(MainActivity.this, UnityPlayerActivity.class);
 //                intent.putExtra("Message", message);
                 startActivity(intent);
             }
         });
+    }
+
+    public void sendUnityMessage(String objName, String methodName, String paraText)
+    {
+        com.unity3d.player.UnityPlayer.UnitySendMessage(objName, methodName, paraText);
     }
 
     @Override
@@ -197,22 +212,7 @@ public class MainActivity extends Activity {
 
     private void updateStepCountView(final String count) {
         runOnUiThread(() -> mStepCountTv.setText(count));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(android.view.MenuItem item) {
-
-        if (item.getItemId() == R.id.connect) {
-            requestPermission();
-        }
-        return true;
+        strSteps = count;
     }
 }
 
