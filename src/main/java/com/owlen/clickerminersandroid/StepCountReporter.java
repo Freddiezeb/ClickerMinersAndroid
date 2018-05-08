@@ -4,6 +4,8 @@ package com.owlen.clickerminersandroid;
  * Created by Freddie on 2018-04-23.
  */
 
+import android.util.Log;
+
 import com.samsung.android.sdk.healthdata.HealthConstants;
 import com.samsung.android.sdk.healthdata.HealthData;
 import com.samsung.android.sdk.healthdata.HealthDataObserver;
@@ -12,8 +14,6 @@ import com.samsung.android.sdk.healthdata.HealthDataResolver.ReadRequest;
 import com.samsung.android.sdk.healthdata.HealthDataResolver.ReadResult;
 import com.samsung.android.sdk.healthdata.HealthDataStore;
 import com.samsung.android.sdk.healthdata.HealthResultHolder;
-
-import android.util.Log;
 
 import java.util.Calendar;
 import java.util.TimeZone;

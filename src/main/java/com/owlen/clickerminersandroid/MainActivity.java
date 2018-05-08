@@ -1,5 +1,13 @@
 package com.owlen.clickerminersandroid;
 
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 import com.samsung.android.sdk.healthdata.HealthConnectionErrorResult;
 import com.samsung.android.sdk.healthdata.HealthConstants;
 import com.samsung.android.sdk.healthdata.HealthDataService;
@@ -7,24 +15,12 @@ import com.samsung.android.sdk.healthdata.HealthDataStore;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager.PermissionKey;
 import com.samsung.android.sdk.healthdata.HealthPermissionManager.PermissionType;
-import com.unity3d.player.UnityPlayer;
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.widget.TextView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import java.util.Collections;
 import java.util.Map;
 
-import android.content.Intent;
-import android.view.View;
-import android.widget.Button;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends UnityPlayerActivity {
 
